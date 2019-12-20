@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="64dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/top_bet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center_horizontal"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:id="@+id/text_bet_initiator_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bet Initiator"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/text_bet_initiator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JOHN"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:layout_below="@id/text_bet_initiator_title"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp" />
+
+            <ImageView
+                android:id="@+id/icon_bet_switch"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_bet_switch"
+                android:layout_toRightOf="@id/text_bet_initiator"
+                android:layout_toEndOf="@id/text_bet_initiator"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_below="@id/text_bet_initiator_title"/>
+
+            <TextView
+                android:id="@+id/text_bet_participant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/icon_bet_switch"
+                android:layout_alignBaseline="@id/text_bet_initiator"
+                android:text="MERCY"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"/>
+
+            <TextView
+                android:id="@+id/text_bet_participant_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bet participant"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="16dp"
+                android:layout_toRightOf="@id/icon_bet_switch"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/new_bet_title_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top_bet_layout"
+            android:text="@string/bet_title"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"/>
+
+        <EditText
+            android:id="@+id/new_bet_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/new_bet_title_title"
+            android:layout_alignLeft="@id/new_bet_title_title"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/new_bet_proposition_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/new_bet_title"
+            android:text="@string/bet_proposition"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"/>
+
+        <EditText
+            android:id="@+id/new_bet_proposition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/new_bet_proposition_title"
+            android:layout_alignLeft="@id/new_bet_proposition_title"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:inputType="text|textMultiLine"
+            android:lines="4"
+            android:maxLines="10"
+            android:minLines="3"/>
+
+        <TextView
+            android:id="@+id/text_dashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/new_bet_initiator_winning_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/initiator_win"
+            android:layout_below="@id/new_bet_proposition"
+            android:layout_marginTop="16dp"
+            android:layout_alignLeft="@id/new_bet_proposition_title"
+            android:layout_alignStart="@id/new_bet_proposition_title"/>
+
+        <EditText
+            android:id="@+id/new_bet_initiator_winning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/new_bet_initiator_winning_title"
+            android:layout_alignLeft="@id/new_bet_proposition_title"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:inputType="text|textMultiLine"
+            android:lines="4"
+            android:maxLines="10"
+            android:minLines="2"/>
+
+        <TextView
+            android:id="@+id/new_bet_participant_winning_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/participant_win"
+            android:layout_below="@id/new_bet_initiator_winning"
+            android:layout_marginTop="16dp"
+            android:layout_alignLeft="@id/new_bet_proposition_title"
+            android:layout_alignStart="@id/new_bet_proposition_title"/>
+
+        <EditText
+            android:id="@+id/new_bet_participant_winning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/new_bet_participant_winning_title"
+            android:layout_alignLeft="@id/new_bet_proposition_title"
+            android:layout_alignStart="@id/new_bet_proposition_title"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
+            android:inputType="text|textMultiLine"
+            android:lines="4"
+            android:maxLines="10"
+            android:minLines="2"/>
+
+        <TextView
+            android:id="@+id/new_bet_expiry_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bet_expiry"
+            android:layout_below="@id/new_bet_participant_winning"
+            android:layout_marginTop="16dp"
+            android:layout_alignLeft="@id/new_bet_proposition_title"
+            android:layout_alignStart="@id/new_bet_proposition_title"/>
+
+        <TextView
+            android:id="@+id/new_bet_expiry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/new_bet_expiry_title"
+            android:layout_alignLeft="@id/new_bet_proposition_title"
+            android:layout_marginTop="16dp"
+            android:text="@string/pending_date_expiry"
+            />
+
+        <Button
+            android:id="@+id/set_expiry_date_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/set_expiry_date_button"
+            android:layout_toRightOf="@id/new_bet_expiry"
+            android:layout_alignBaseline="@id/new_bet_expiry"
+            android:layout_marginLeft="30dp"/>
+
+        <Button
+            android:id="@+id/save_bet_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_bet_button"
+            android:textColor="@android:color/white"
+            android:layout_below="@id/set_expiry_date_button"
+            android:layout_centerHorizontal="true"
+            android:theme="@style/AppTheme.AccentButton"
+            android:layout_marginTop="20dp"/>
+    </RelativeLayout>
+</ScrollView>

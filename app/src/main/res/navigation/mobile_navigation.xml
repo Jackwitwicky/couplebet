@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.jacknkiarie.couplebet.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_new_bet"
+        android:name="com.jacknkiarie.couplebet.ui.newbet.NewBetFragment"
+        android:label="@string/title_new_bet"
+        tools:layout="@layout/fragment_new_bet" />
+
+    <fragment
+        android:id="@+id/navigation_bet_history"
+        android:name="com.jacknkiarie.couplebet.ui.history.HistoryFragment"
+        android:label="@string/title_bet_history"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/navigation_statistics"
+        android:name="com.jacknkiarie.couplebet.ui.statistics.StatisticsFragment"
+        android:label="@string/title_bet_statistics"
+        tools:layout="@layout/fragment_statistics" />
+</navigation>

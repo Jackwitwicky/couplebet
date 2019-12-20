@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:id="@+id/bet_history_item_layout">
+
+    <TextView
+        android:id="@+id/bet_history_bet_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bet_history_bet_title"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <TextView
+        android:id="@+id/bet_history_bet_winner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bet_history_bet_title"
+        android:layout_marginTop="16dp"
+        android:text="@string/bet_history_bet_winner"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <TextView
+        android:id="@+id/bet_history_bet_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bet_history_bet_time"
+        android:layout_alignBaseline="@id/bet_history_bet_winner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp"/>
+
+    <TextView
+        android:id="@+id/bet_history_bet_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bet_history_bet_status"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"/>
+
+    <TextView
+        android:id="@+id/bet_history_bet_time_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bet_history_bet_time_title"
+        android:layout_alignBaseline="@id/bet_history_bet_winner"
+        android:layout_toLeftOf="@id/bet_history_bet_time"
+        android:layout_marginRight="6dp"/>
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:layout_below="@id/bet_history_bet_winner"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"/>
+
+</RelativeLayout>

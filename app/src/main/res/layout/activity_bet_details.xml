@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.betdetails.BetDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/details_bet_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:layout_alignParentTop="true">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bet_details_expiry_time"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/bet_details_status_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/bet_details_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/bet_details_status_title"
+                android:layout_alignBaseline="@id/bet_details_status_title"
+                android:layout_marginLeft="6dp"
+                android:text="- ONGOING"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/bet_details_expiry_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_bet_expiry_time"
+            android:textColor="@android:color/white"
+            android:textSize="32sp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="left"
+            android:textColor="@android:color/white"
+            android:layout_toRightOf="@id/bet_details_expiry_time"
+            android:layout_alignBaseline="@id/bet_details_expiry_time"
+            android:layout_marginLeft="10dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/the_bet_details_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/the_bet_title"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/details_bet_top_layout"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:id="@+id/details_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/the_bet"
+        android:layout_below="@id/the_bet_details_title"
+        android:layout_alignLeft="@id/the_bet_details_title"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/bet_details_initiator_winnings_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initiator_wins"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/details_bet"
+        android:layout_marginTop="16dp"
+        android:layout_alignLeft="@id/the_bet_details_title"/>
+
+    <View
+        android:id="@+id/bet_details_winnings_divider"
+        android:layout_width="1dp"
+        android:layout_height="100dp"
+        android:background="@android:color/darker_gray"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/details_bet"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/bet_details_initiator_winnings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initiator_winnings"
+        android:layout_below="@id/bet_details_initiator_winnings_title"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/bet_details_winnings_divider"
+        android:layout_marginRight="6dp"
+        android:layout_alignLeft="@id/bet_details_initiator_winnings_title"
+        />
+
+    <TextView
+        android:id="@+id/bet_details_participant_winnings_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/participant_wins"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/details_bet"
+        android:layout_marginTop="16dp"
+        android:layout_alignLeft="@id/bet_details_winnings_divider"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/participant_winnings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initiator_winnings"
+        android:layout_below="@id/bet_details_initiator_winnings_title"
+        android:layout_toRightOf="@id/bet_details_winnings_divider"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/the_bet_details_creation_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bet_history_bet_time"
+        android:layout_alignBaseline="@id/the_bet_details_title"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bet_details_creation_date_title"
+        android:layout_alignBaseline="@id/the_bet_details_creation_date"
+        android:layout_toLeftOf="@id/the_bet_details_creation_date"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/bet_details_initiator_winnings"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/bet_details_declare_winner_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bet_details_declare_winner"/>
+
+        <Button
+            android:id="@+id/bet_details_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bet_details_edit_bet" />
+        <Button
+            android:id="@+id/bet_details_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bet_details_cancel_bet"/>
+    </LinearLayout>
+
+</RelativeLayout>
