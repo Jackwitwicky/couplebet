@@ -13,6 +13,7 @@ public class BetRepository {
 
     private OldBetDao oldBetDao;
     private LiveData<List<Bet>> allBets;
+    private LiveData<List<Bet>> completeBets;
     private LiveData<Bet> currentBet;
 
     public BetRepository(Application application) {
@@ -21,10 +22,15 @@ public class BetRepository {
         OldBetRoomDatabase db = OldBetRoomDatabase.getDatabase(application);
         oldBetDao = db.betDao();
         allBets = oldBetDao.getAllBets();
+        completeBets = oldBetDao.getCompleteBets();
     }
 
     public LiveData<List<Bet>> getAllBets() {
         return allBets;
+    }
+
+    public LiveData<List<Bet>> getCompleteBets() {
+        return completeBets;
     }
 
     public void insert (Bet bet) {

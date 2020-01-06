@@ -31,6 +31,10 @@ public interface OldBetDao {
     @Query("SELECT * FROM bet_table")
     LiveData<List<Bet>> getAllBets();
 
+    // get list of complete bets
+    @Query("SELECT * FROM bet_table WHERE status='completed'")
+    LiveData<List<Bet>> getCompleteBets();
+
     // get a particular bet
     @Query("SELECT * FROM bet_table WHERE uid LIKE :uid")
     public LiveData<Bet> findBet(int uid);

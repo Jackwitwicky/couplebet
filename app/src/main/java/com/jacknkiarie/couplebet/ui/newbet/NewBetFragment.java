@@ -187,7 +187,7 @@ public class NewBetFragment extends Fragment {
                                 "The expiry date cannot be in the past", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        betExpiryDate = year + "-" + month + "-" + day;
+                        betExpiryDate = day + "-" + month + "-" + year;
                         betExpiryDateView.setText(betExpiryDate);
                     }
                 }

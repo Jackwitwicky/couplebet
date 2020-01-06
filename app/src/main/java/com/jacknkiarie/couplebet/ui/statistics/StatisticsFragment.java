@@ -27,27 +27,28 @@ import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.Utils;
 import com.jacknkiarie.couplebet.R;
+import com.jacknkiarie.couplebet.models.Bet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StatisticsFragment extends Fragment {
 
     private StatisticsViewModel statisticsViewModel;
     private LineChart lineChart;
     private TextView winnerTextView;
+//    private List<Bet> allBets;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        statisticsViewModel =
-                ViewModelProviders.of(this).get(StatisticsViewModel.class);
+
+        StatisticsViewModelProviderFactory factory = new StatisticsViewModelProviderFactory(getActivity().getApplication());
+        statisticsViewModel = ViewModelProviders.of(this, factory).get(StatisticsViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_statistics, container, false);
         final TextView textView = root.findViewById(R.id.text_notifications);
-        statisticsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+//        allBets = statisticsViewModel.getCompleteBets().getValue();
 
         winnerTextView = root.findViewById(R.id.bet_statistics_winner);
 
@@ -64,38 +65,60 @@ public class StatisticsFragment extends Fragment {
 //        lineChart.getAxisLeft().setDrawGridLines(false);
         lineChart.getXAxis().setDrawGridLines(false);
 
-        // add data
-        setData(10, 10);
+        statisticsViewModel.getCompleteBets().observe(this, new Observer<List<Bet>>() {
+            @Override
+            public void onChanged(List<Bet> bets) {
 
-        lineChart.animateX(1500);
+                // add data
+                setData(bets);
+
+                lineChart.animateX(1500);
+            }
+        });
 
         return root;
     }
 
-    private void setData(int count, float range) {
+    private void setData(List<Bet> bets) {
 
-        ArrayList<Entry> values = new ArrayList<>();
-        ArrayList<Entry> values2 = new ArrayList<>();
+        ArrayList<Entry> jackValues = new ArrayList<>();
+        ArrayList<Entry> mercyValues = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
-
-            float val = (float) (Math.random() * 2);
-            Log.d("Blue", "THe value generate is: " + val);
-            if (val > 1) {
-                values.add(new Entry(i, i));
-                if (values2.size() > 1) {
-                    values2.add(values2.get(values2.size() - 1));
-                    values2.add(new Entry(i, values2.get(values2.size() - 1).getY()));
+        for (int i = 0; i < bets.size(); i++) {
+            if (bets.get(i).getBetWinner() != null && bets.get(i).getBetWinner().equals("jack")) {
+                jackValues.add(new Entry(i, i));
+                if (mercyValues.size() > 1) {
+                    mercyValues.add(mercyValues.get(mercyValues.size() - 1));
+                    mercyValues.add(new Entry(i, mercyValues.get(mercyValues.size() - 1).getY()));
                 }
             }
-            else {
-                values2.add(new Entry(i, i));
-                if (values.size() > 1) {
-                    values.add(new Entry(i, values.get(values.size() - 1).getY()));
+            else if(bets.get(i).getBetWinner() != null && bets.get(i).getBetWinner().equals("mercy")) {
+                mercyValues.add(new Entry(i, i));
+                if (jackValues.size() > 1) {
+                    jackValues.add(new Entry(i, jackValues.get(jackValues.size() - 1).getY()));
                 }
             }
-
         }
+
+//        for (int i = 0; i < count; i++) {
+//
+//            float val = (float) (Math.random() * 2);
+//            Log.d("Blue", "THe value generate is: " + val);
+//            if (val > 1) {
+//                jackValues.add(new Entry(i, i));
+//                if (mercyValues.size() > 1) {
+//                    mercyValues.add(mercyValues.get(mercyValues.size() - 1));
+//                    mercyValues.add(new Entry(i, mercyValues.get(mercyValues.size() - 1).getY()));
+//                }
+//            }
+//            else {
+//                mercyValues.add(new Entry(i, i));
+//                if (jackValues.size() > 1) {
+//                    jackValues.add(new Entry(i, jackValues.get(jackValues.size() - 1).getY()));
+//                }
+//            }
+//
+//        }
 
         LineDataSet set1;
         LineDataSet set2;
@@ -103,13 +126,13 @@ public class StatisticsFragment extends Fragment {
         if (lineChart.getData() != null &&
                 lineChart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet) lineChart.getData().getDataSetByIndex(0);
-            set1.setValues(values);
+            set1.setValues(jackValues);
             set1.notifyDataSetChanged();
             lineChart.getData().notifyDataChanged();
             lineChart.notifyDataSetChanged();
         } else {
             // create a dataset and give it a type
-            set1 = new LineDataSet(values, "Jack");
+            set1 = new LineDataSet(jackValues, "Jack");
 
             set1.setDrawIcons(false);
 
@@ -140,7 +163,7 @@ public class StatisticsFragment extends Fragment {
 
 
             // create a dataset and give it a type
-            set2 = new LineDataSet(values2, "Mercy");
+            set2 = new LineDataSet(mercyValues, "Mercy");
 
             set1.setDrawIcons(false);
 
@@ -181,14 +204,24 @@ public class StatisticsFragment extends Fragment {
         }
 
         // check who is winning
-        float highestJackValue = values.get(values.size() - 1).getY();
-        float highestMercyValue = values2.get(values2.size() - 1).getY();
+        float highestJackValue = 0;
+        float highestMercyValue = 0;
+        if (jackValues.size() > 1) {
+            highestJackValue = jackValues.get(jackValues.size() - 1).getY();
+        }
+
+        if (mercyValues.size() > 1) {
+            highestMercyValue = mercyValues.get(mercyValues.size() - 1).getY();
+        }
 
         if (highestJackValue > highestMercyValue) {
             winnerTextView.setText("Jack is winning!");
         }
-        else {
+        else if(highestMercyValue > highestJackValue) {
             winnerTextView.setText("Mercy is winning!");
+        }
+        else {
+            winnerTextView.setText("We are tied!");
         }
     }
 }
