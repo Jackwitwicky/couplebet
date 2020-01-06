@@ -53,6 +53,7 @@ public class Bet implements Serializable {
     public static final String STATUS_CLOSED = "closed";
     public static final String STATUS_CANCELLED = "cancelled";
 
+    public static final String BET_EXTRA = "bet_extra";
     // empty constructor
     @Ignore
     public Bet() {}

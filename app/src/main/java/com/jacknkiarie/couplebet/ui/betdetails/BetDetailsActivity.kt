@@ -1,6 +1,7 @@
 package com.jacknkiarie.couplebet.ui.betdetails
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 
 import com.jacknkiarie.couplebet.R
 import com.jacknkiarie.couplebet.models.Bet
+import com.jacknkiarie.couplebet.ui.editbet.EditBetActivity
 import com.jacknkiarie.couplebet.ui.history.HistoryViewModel
 import com.jacknkiarie.couplebet.ui.history.HistoryViewModelProviderFactory
 import kotlinx.android.synthetic.main.activity_bet_details.*
@@ -57,6 +60,12 @@ class BetDetailsActivity : AppCompatActivity() {
                     }.show()
         }
 
+        bet_details_edit_button.setOnClickListener {
+            // go to edit bet screen
+            var editBetIntent = Intent(this@BetDetailsActivity, EditBetActivity::class.java)
+            editBetIntent.putExtra(Bet.BET_EXTRA, bet)
+            startActivity(editBetIntent)
+        }
 
 
         println("The bet title is: " + bet.title)
@@ -67,6 +76,7 @@ class BetDetailsActivity : AppCompatActivity() {
         appBar?.title = "Bet Details"
         appBar?.setDisplayHomeAsUpEnabled(true)
 
+        setupUI()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -75,5 +85,16 @@ class BetDetailsActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setupUI() {
+        if (bet.status == Bet.STATUS_CANCELLED || bet.status ==  Bet.STATUS_EXPIRED) {
+            bet_details_cancel_button.visibility = View.INVISIBLE
+        }
+
+        if (bet.status != Bet.STATUS_ONGOING) {
+            bet_details_declare_winner_button.visibility = View.INVISIBLE
+            bet_details_edit_button.visibility = View.INVISIBLE
+        }
     }
 }

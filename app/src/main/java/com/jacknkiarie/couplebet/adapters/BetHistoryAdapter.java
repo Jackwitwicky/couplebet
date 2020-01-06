@@ -74,9 +74,6 @@ public class BetHistoryAdapter extends RecyclerView.Adapter<BetHistoryAdapter.My
         holder.layoutView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,
-                        "Test content", Toast.LENGTH_SHORT).show();
-
                 Intent detailsIntent = new Intent(context, BetDetailsActivity.class);
                 detailsIntent.putExtra("BET", mDataset.get(position));
                 context.startActivity(detailsIntent);

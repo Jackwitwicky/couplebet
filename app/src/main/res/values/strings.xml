@@ -47,7 +47,7 @@
     <string name="bet_history_bet_status_title">Status:</string>
     <string name="bet_history_bet_status">Completed</string>
 
-<!--    Bet Details Screen-->
+    <!--    Bet Details Screen-->
     <string name="bet_details_title">Bet Details</string>
     <string name="bet_details_creation_date_title">Created On:</string>
     <string name="bet_details_declare_winner">Declare Winner</string>
