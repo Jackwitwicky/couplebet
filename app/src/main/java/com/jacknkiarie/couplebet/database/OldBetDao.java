@@ -28,12 +28,16 @@ public interface OldBetDao {
     void deleteAll();
 
     // get list of bets
-    @Query("SELECT * FROM bet_table")
+    @Query("SELECT * FROM bet_table ORDER BY uid DESC")
     LiveData<List<Bet>> getAllBets();
 
     // get list of complete bets
     @Query("SELECT * FROM bet_table WHERE status='completed'")
     LiveData<List<Bet>> getCompleteBets();
+
+    // get list of ongoing bets
+    @Query("SELECT * FROM bet_table WHERE status='ongoing'")
+    LiveData<List<Bet>> getOngoingBets();
 
     // get a particular bet
     @Query("SELECT * FROM bet_table WHERE uid LIKE :uid")

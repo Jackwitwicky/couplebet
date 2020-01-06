@@ -51,9 +51,12 @@ class BetDetailsActivity : AppCompatActivity() {
                     .setMessage(R.string.dialog_bet_details_cancel_bet_content)
                     .setPositiveButton(android.R.string.yes) { _, _ ->
                         bet.status = Bet.STATUS_CANCELLED
+                        bet_details_button_layout.visibility = View.INVISIBLE
                         viewModel!!.insert(bet)
                         Toast.makeText(this,
                                 R.string.dialog_bet_details_cancel_bet_confirmed, Toast.LENGTH_SHORT).show()
+                        bet_details_status.text = Bet.STATUS_CANCELLED
+
 
                     }.setNegativeButton(android.R.string.no) { _, _ ->
                         // dismiss the dialog
@@ -88,7 +91,7 @@ class BetDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        details_bet.text = bet.title
+        details_bet.text = bet.proposition
         bet_details_initiator_winnings.text = bet.initiatorReward
         participant_winnings.text = bet.participantReward
         the_bet_details_creation_date.text = bet.creationDate
