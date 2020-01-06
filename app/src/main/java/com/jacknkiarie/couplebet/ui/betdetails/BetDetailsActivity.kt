@@ -41,12 +41,6 @@ class BetDetailsActivity : AppCompatActivity() {
         val factory = BetDetailsViewModelFactory(this.getApplication())
         viewModel = ViewModelProviders.of(this, factory).get(NewBetDetailsViewModel::class.java)
 
-        details_bet.text = bet.title
-        bet_details_initiator_winnings.text = bet.initiatorReward
-        participant_winnings.text = bet.participantReward
-        the_bet_details_creation_date.text = bet.creationDate
-        bet_details_status.text = "- ${bet.status.toUpperCase()}"
-
         bet_details_declare_winner_button.setOnClickListener {
             declareWinnerDialog()
         }
@@ -94,6 +88,12 @@ class BetDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
+        details_bet.text = bet.title
+        bet_details_initiator_winnings.text = bet.initiatorReward
+        participant_winnings.text = bet.participantReward
+        the_bet_details_creation_date.text = bet.creationDate
+        bet_details_status.text = "- ${bet.status.toUpperCase()}"
+
         if (bet.status == Bet.STATUS_CANCELLED || bet.status ==  Bet.STATUS_EXPIRED || bet.status == Bet.STATUS_COMPLETED) {
             bet_details_cancel_button.visibility = View.INVISIBLE
         }
@@ -107,9 +107,12 @@ class BetDetailsActivity : AppCompatActivity() {
             bet_details_bet_winner.setText(bet.betWinner.capitalize())
         }
 
-        if(bet.expiryDate != null || !bet.status.equals(Bet.STATUS_EXPIRED)) {
+        if(bet.expiryDate != null && !bet.status.equals(Bet.STATUS_EXPIRED)) {
             setUpExpiryTimer()
         }
+
+        bet_details_initiator_winnings_title.text = String.format(getString(R.string.initiator_wins), bet.initiator.capitalize())
+        bet_details_participant_winnings_title.text = String.format(getString(R.string.participant_wins), bet.participant.capitalize())
 
 //        bet.status = Bet.STATUS_ONGOING
 //        viewModel?.insert(bet)
@@ -128,7 +131,7 @@ class BetDetailsActivity : AppCompatActivity() {
 
         println("The expiry date is: $expiryCalendar")
 
-        if(expiryCalendar.before(currentCalendar) && (bet.status != Bet.STATUS_COMPLETED || bet.status != Bet.STATUS_CANCELLED) ) {
+        if(expiryCalendar.before(currentCalendar) && bet.status == Bet.STATUS_ONGOING ) {
             bet_details_status.text = Bet.STATUS_EXPIRED
             bet.status = Bet.STATUS_EXPIRED.toUpperCase()
             viewModel?.insert(bet)

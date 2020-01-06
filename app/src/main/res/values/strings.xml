@@ -28,8 +28,8 @@
         ut verear maiorum dissentias usu. Illum ubique sit at, audire dissentias in ius,
         suas nullam dolores ei vim. At mei lorem theophrastus definitionem.
     </string>
-    <string name="initiator_wins">Initiator Wins (Jack)</string>
-    <string name="participant_wins">Participant Wins (Mercy)</string>
+    <string name="initiator_wins">Initiator Wins (%s)</string>
+    <string name="participant_wins">Participant Wins (%s)</string>
     <string name="initiator_winnings">
         Nec tale honestatis vituperatoribus ex. Qui modus reformidans ut. No epicuri inciderint.
     </string>
@@ -53,7 +53,7 @@
     <string name="bet_details_creation_date_title">Created On:</string>
     <string name="bet_details_declare_winner">Declare Winner</string>
     <string name="bet_details_cancel_bet">Cancel Bet</string>
-    <string name="bet_details_edit_bet">Edti Bet</string>
+    <string name="bet_details_edit_bet">Edit Bet</string>
     <string name="bet_details_bet_winner">Bet Winner</string>
 
     <string name="dialog_bet_details_cancel_bet_title">Confirmation</string>

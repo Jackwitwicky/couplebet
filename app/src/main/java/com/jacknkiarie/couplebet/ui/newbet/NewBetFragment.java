@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class NewBetFragment extends Fragment {
     private EditText betParticipantWinningsEdit;
     private Button saveBetButton;
     private TextView betExpiryDateView;
+    private ImageView betSwitchView;
 
 
 
@@ -103,14 +105,25 @@ public class NewBetFragment extends Fragment {
             }
         });
 
+        betSwitchView = root.findViewById(R.id.icon_bet_switch);
+        betSwitchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String betInitiatorString = betInitiatorView.getText().toString();
+                String betParticipantString = betParticipantView.getText().toString();
+                betInitiatorView.setText(betParticipantString);
+                betParticipantView.setText(betInitiatorString);
+            }
+        });
+
         return root;
     }
 
     private boolean validateFields() {
         boolean isValidated = true;
 
-        betInitiator = betInitiatorView.getText().toString().trim();
-        betParticipant = betParticipantView.getText().toString().trim();
+        betInitiator = betInitiatorView.getText().toString().trim().toLowerCase();
+        betParticipant = betParticipantView.getText().toString().trim().toLowerCase();
         betTitle = betTitleEdit.getText().toString().trim();
         betProposition = betPropositionEdit.getText().toString().trim();
         betInitiatorWinnings = betInitiatorWinningsEdit.getText().toString().trim();
