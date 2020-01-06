@@ -30,6 +30,7 @@ public class HistoryFragment extends Fragment {
     private RecyclerView historyRecyclerView;
     private BetHistoryAdapter betHistoryAdapter;
     private ArrayList<Bet> betHistoryList;
+    private TextView emptyView;
 
     public static HistoryFragment newInstance() {
         return new HistoryFragment();
@@ -49,6 +50,7 @@ public class HistoryFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         historyRecyclerView.setLayoutManager(layoutManager);
         historyRecyclerView.setAdapter(betHistoryAdapter);
+        emptyView = root.findViewById(R.id.empty_view);
 
 //        historyViewModel =
 //                new ViewModelProvider(this).get(HistoryViewModel.class);
@@ -67,6 +69,12 @@ public class HistoryFragment extends Fragment {
             public void onChanged(List<Bet> bets) {
                 // update the caced copy of the bets in the adapter
                 betHistoryAdapter.setBets(bets);
+                if (bets.isEmpty()) {
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    emptyView.setVisibility(View.INVISIBLE);
+                }
             }
         });
 

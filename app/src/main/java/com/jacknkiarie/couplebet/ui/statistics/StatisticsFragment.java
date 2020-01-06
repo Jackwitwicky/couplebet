@@ -86,14 +86,13 @@ public class StatisticsFragment extends Fragment {
 
         for (int i = 0; i < bets.size(); i++) {
             if (bets.get(i).getBetWinner() != null && bets.get(i).getBetWinner().equals("jack")) {
-                jackValues.add(new Entry(i, i));
+                jackValues.add(new Entry(i, ++i));
                 if (mercyValues.size() > 1) {
-                    mercyValues.add(mercyValues.get(mercyValues.size() - 1));
                     mercyValues.add(new Entry(i, mercyValues.get(mercyValues.size() - 1).getY()));
                 }
             }
             else if(bets.get(i).getBetWinner() != null && bets.get(i).getBetWinner().equals("mercy")) {
-                mercyValues.add(new Entry(i, i));
+                mercyValues.add(new Entry(i, ++i));
                 if (jackValues.size() > 1) {
                     jackValues.add(new Entry(i, jackValues.get(jackValues.size() - 1).getY()));
                 }
@@ -206,11 +205,11 @@ public class StatisticsFragment extends Fragment {
         // check who is winning
         float highestJackValue = 0;
         float highestMercyValue = 0;
-        if (jackValues.size() > 1) {
+        if (jackValues.size() > 0) {
             highestJackValue = jackValues.get(jackValues.size() - 1).getY();
         }
 
-        if (mercyValues.size() > 1) {
+        if (mercyValues.size() > 0) {
             highestMercyValue = mercyValues.get(mercyValues.size() - 1).getY();
         }
 

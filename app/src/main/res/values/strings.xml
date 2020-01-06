@@ -47,6 +47,7 @@
     <string name="bet_history_bet_time">04/09/2019</string>
     <string name="bet_history_bet_status_title">Status:</string>
     <string name="bet_history_bet_status">Completed</string>
+    <string name="no_data_available">There are no bets. Please use the add button to create a new bet</string>
 
     <!--    Bet Details Screen-->
     <string name="bet_details_title">Bet Details</string>
