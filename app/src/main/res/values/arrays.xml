@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bet_participants_array">
+        <item>Jack</item>
+        <item>Mercy</item>
+    </string-array>
+</resources>

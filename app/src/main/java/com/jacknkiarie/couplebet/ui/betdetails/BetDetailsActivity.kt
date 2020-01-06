@@ -21,6 +21,8 @@ import com.jacknkiarie.couplebet.ui.editbet.EditBetActivity
 import com.jacknkiarie.couplebet.ui.history.HistoryViewModel
 import com.jacknkiarie.couplebet.ui.history.HistoryViewModelProviderFactory
 import kotlinx.android.synthetic.main.activity_bet_details.*
+import java.util.*
+
 
 class BetDetailsActivity : AppCompatActivity() {
 
@@ -44,6 +46,10 @@ class BetDetailsActivity : AppCompatActivity() {
         participant_winnings.text = bet.participantReward
         the_bet_details_creation_date.text = bet.creationDate
         bet_details_status.text = "- ${bet.status.toUpperCase()}"
+
+        bet_details_declare_winner_button.setOnClickListener {
+            declareWinnerDialog()
+        }
 
         bet_details_cancel_button.setOnClickListener {
             AlertDialog.Builder(this)
@@ -88,7 +94,7 @@ class BetDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        if (bet.status == Bet.STATUS_CANCELLED || bet.status ==  Bet.STATUS_EXPIRED) {
+        if (bet.status == Bet.STATUS_CANCELLED || bet.status ==  Bet.STATUS_EXPIRED || bet.status == Bet.STATUS_COMPLETED) {
             bet_details_cancel_button.visibility = View.INVISIBLE
         }
 
@@ -96,5 +102,69 @@ class BetDetailsActivity : AppCompatActivity() {
             bet_details_declare_winner_button.visibility = View.INVISIBLE
             bet_details_edit_button.visibility = View.INVISIBLE
         }
+
+        if(bet.betWinner != null && bet.betWinner.isNotEmpty()) {
+            bet_details_bet_winner.setText(bet.betWinner.capitalize())
+        }
+
+        if(bet.expiryDate != null || !bet.status.equals(Bet.STATUS_EXPIRED)) {
+            setUpExpiryTimer()
+        }
+
+//        bet.status = Bet.STATUS_ONGOING
+//        viewModel?.insert(bet)
+//        Toast.makeText(this@BetDetailsActivity, "Saaved", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setUpExpiryTimer() {
+        var currentCalendar =  Calendar.getInstance()
+
+        var expiryCalendar = Calendar.getInstance()
+        var expiryDateElements = bet.expiryDate.split("-")
+
+        expiryCalendar.set(Calendar.DAY_OF_MONTH, expiryDateElements[0].toInt())
+        expiryCalendar.set(Calendar.MONTH, expiryDateElements[1].toInt())
+        expiryCalendar.set(Calendar.YEAR, expiryDateElements[2].toInt())
+
+        println("The expiry date is: $expiryCalendar")
+
+        if(expiryCalendar.before(currentCalendar) && (bet.status != Bet.STATUS_COMPLETED || bet.status != Bet.STATUS_CANCELLED) ) {
+            bet_details_status.text = Bet.STATUS_EXPIRED
+            bet.status = Bet.STATUS_EXPIRED.toUpperCase()
+            viewModel?.insert(bet)
+        } else {
+            // display the expiry date timer countdown
+            // in the format hh::mm::ss
+
+//            var timerString = "${expiryCalendar.get(Calendar.HOUR)}"
+
+            val difference = expiryCalendar.getTimeInMillis() - currentCalendar.getTimeInMillis()
+            val days = (difference / (1000 * 60 * 60 * 24)).toInt()
+            bet_details_expiry_time.text = days.toString()
+
+//            val seconds = (difference / (1000)).toInt()
+
+        }
+    }
+
+    private fun declareWinnerDialog() {
+        AlertDialog.Builder(this)
+                .setTitle(R.string.dialog_bet_details_cancel_bet_title)
+                .setItems(R.array.bet_participants_array, DialogInterface.OnClickListener {dialog, position ->
+                    println("The selected position is: $position")
+                    if (position == 0 ) {
+                        bet.betWinner = "jack"
+                    }
+                    else {
+                        bet.betWinner = "mercy"
+                    }
+                    bet.status = Bet.STATUS_COMPLETED
+                    bet_details_status.text = bet.status
+
+                    viewModel?.insert(bet)
+
+                    Toast.makeText(this@BetDetailsActivity, "This bet has been completed successfully", Toast.LENGTH_SHORT).show()
+
+                }).show()
     }
 }

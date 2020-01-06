@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="left"
+            android:text="days left"
             android:textColor="@android:color/white"
             android:layout_toRightOf="@id/bet_details_expiry_time"
             android:layout_alignBaseline="@id/bet_details_expiry_time"
@@ -169,11 +169,32 @@
         android:layout_toLeftOf="@id/the_bet_details_creation_date"
         />
 
+    <TextView
+        android:id="@+id/bet_details_bet_winner_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bet_details_bet_winner"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/bet_details_winnings_divider"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:id="@+id/bet_details_bet_winner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pending"
+        android:layout_below="@id/bet_details_bet_winner_title"
+        android:layout_alignLeft="@id/the_bet_details_title"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/bet_details_initiator_winnings"
+        android:layout_below="@id/bet_details_bet_winner"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"

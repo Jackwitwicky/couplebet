@@ -56,6 +56,7 @@ class EditBetActivity : AppCompatActivity() {
                 bet.proposition = betProposition
                 bet.initiatorReward = betInitiatorWinnings
                 bet.participantReward = betParticipantWinnings
+                bet.expiryDate = betExpiryDate
 
                 editBetViewModel.insert(bet)
 
@@ -140,7 +141,7 @@ class EditBetActivity : AppCompatActivity() {
                     "The expiry date cannot be in the past", Toast.LENGTH_SHORT).show()
             betExpiryDate = ""
         } else {
-            betExpiryDate = "$year-$month-$day"
+            betExpiryDate = "$day-$month-$year"
             edit_bet_expiry.setText(betExpiryDate)
         }
     }

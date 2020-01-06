@@ -19,7 +19,7 @@
 
     <string name="current_bet_title">Current Bet</string>
     <string name="current_bet_expiry_time_title">Time to Expiry:</string>
-    <string name="current_bet_expiry_time">00:44:20</string>
+    <string name="current_bet_expiry_time">00</string>
     <string name="the_bet_title">The bet</string>
     <string name="the_bet">
         Lorem ipsum dolor sit amet, no eos congue ridens graeci,
@@ -33,6 +33,7 @@
     <string name="initiator_winnings">
         Nec tale honestatis vituperatoribus ex. Qui modus reformidans ut. No epicuri inciderint.
     </string>
+    <string name="current_bet_no_bet">There are currently no ongoing bets</string>
 
     <string name="participant_winnings">
         Dictas aperiam cu sit, eu cum scripta apeirian,
@@ -53,6 +54,7 @@
     <string name="bet_details_declare_winner">Declare Winner</string>
     <string name="bet_details_cancel_bet">Cancel Bet</string>
     <string name="bet_details_edit_bet">Edti Bet</string>
+    <string name="bet_details_bet_winner">Bet Winner</string>
 
     <string name="dialog_bet_details_cancel_bet_title">Confirmation</string>
     <string name="dialog_bet_details_cancel_bet_content">Are you sure you want to cancel this bet?</string>

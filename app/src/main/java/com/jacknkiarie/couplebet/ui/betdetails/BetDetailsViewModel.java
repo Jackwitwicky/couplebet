@@ -31,4 +31,6 @@ public class BetDetailsViewModel extends ViewModel {
 
     public LiveData<Bet> getCurrentBet() { return currentBet; }
 
+    public void insert(Bet bet) {betRepository.insert(bet);}
+
 }
